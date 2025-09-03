@@ -1,6 +1,6 @@
 [build]
   publish = "client/build"
-  command = "npm run build"
+  command = "npm install && npm run build"
 
 [build.environment]
   NODE_ENV = "production"
@@ -8,10 +8,6 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
-
-# Add this to install function dependencies automatically
-[[plugins]]
-  package = "@netlify/plugin-functions-install-core"
 
 [[redirects]]
   from = "/api/*"

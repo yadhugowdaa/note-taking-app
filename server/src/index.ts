@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-dotenv.config(); // MUST BE THE FIRST LINE TO RUN
+dotenv.config();
 
 import express from 'express';
 import mongoose from 'mongoose';
@@ -23,7 +23,6 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
-connectDB();
 
 // --- Middlewares ---
 app.use(cors());
@@ -36,6 +35,11 @@ app.use('/api/notes', noteRoutes);
 app.get('/', (req, res) => {
   res.send('API is running...');
 });
+
+// Connect to database only when not in serverless environment
+if (process.env.NETLIFY_DEV !== 'true') {
+  connectDB();
+}
 
 // Export for Netlify Function (serverless)
 export default app;
