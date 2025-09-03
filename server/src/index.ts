@@ -8,7 +8,6 @@ import authRoutes from './routes/authRoutes';
 import noteRoutes from './routes/noteRoutes';
 
 const app = express();
-const PORT = process.env.PORT || 5000;
 
 // --- Database Connection ---
 const connectDB = async () => {
@@ -38,6 +37,13 @@ app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Export for Netlify Function (serverless)
+export default app;
+
+// Only listen locally, not in serverless environment
+if (process.env.NETLIFY_DEV !== 'true') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server is running on http://localhost:${PORT}`);
+  });
+}

@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api/';
+// Updated API_URL for Netlify deployment
+const API_URL = process.env.NODE_ENV === 'production' 
+  ? '/.netlify/functions/api/' 
+  : 'http://localhost:5000/api/';
 
 // === Auth Service ===
 
@@ -34,7 +37,7 @@ export const registerUser = async (userData: any) => {
   }
 };
 
-// --- NEW: Login User Function ---
+// Login User Function
 export const loginUser = async (userData: { email: string; password: string }) => {
   try {
     const response = await axios.post(API_URL + 'auth/login', userData);
@@ -49,7 +52,6 @@ export const loginUser = async (userData: { email: string; password: string }) =
     return Promise.reject({ message });
   }
 };
-
 
 // === Notes Service ===
 const getAuthHeaders = (token: string) => ({
@@ -73,7 +75,7 @@ export const deleteNote = async (noteId: string, token: string) => {
   return response.data;
 };
 
-// --- NEW: Update Note ---
+// Update Note
 export const updateNote = async (noteId: string, noteData: { title: string; content: string }, token: string) => {
   const response = await axios.put(API_URL + 'notes/' + noteId, noteData, getAuthHeaders(token));
   return response.data;
