@@ -1,0 +1,76 @@
+/* client/src/pages/SignupPage.module.css */
+
+.container {
+  min-height: 100vh;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Important for z-index of signupBox */
+  z-index: 1; /* Ensure content is above the background */
+  background: transparent; /* Main container background is now transparent */
+}
+
+.signupBox {
+  background: #1e1e1e;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  position: relative; /* Important: ensures signupBox is above animated background */
+  z-index: 2; /* Make sure it's above the animated background */
+}
+
+/* --- NEW: Style for the Application Name --- */
+.appName {
+  font-size: 40px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 10px;
+  /* Simple gradient text effect */
+  background: -webkit-linear-gradient(#eee, #88b3f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Light text color for the title */
+.title {
+  margin-bottom: 24px;
+  color: #ffffff;
+  font-size: 24px;
+}
+
+/* Lighter separator text */
+.separator {
+  margin: 20px 0;
+  color: #888888;
+  font-weight: bold;
+}
+
+/* Lighter text for the login link */
+.loginLink {
+  margin-top: 20px;
+  font-size: 14px;
+  color: #bbbbbb;
+}
+
+/* Link color that stands out on a dark background */
+.loginLink a {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.loginLink a:hover {
+  text-decoration: underline;
+}
+
+/* Error text remains red for visibility */
+.errorText {
+  color: #ff4d4d;
+  margin-bottom: 16px;
+  font-size: 14px;
+}

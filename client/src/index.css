@@ -1,0 +1,9 @@
+/* Reset browser default margins/padding */
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #0d0d0d; /* same as your app background */
+  overflow-x: hidden; /* avoid horizontal scrollbars */
+}

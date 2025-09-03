@@ -1,0 +1,35 @@
+.button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 8px; /* Added margin for better spacing */
+  margin-bottom: 16px;
+  transition: background-color 0.2s;
+}
+
+.buttonPrimary {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.buttonPrimary:hover {
+  background-color: #5aa1f2;
+}
+
+.buttonGoogle {
+  background-color: #ffffff; /* Google button often stays light */
+  color: #1c1e21;
+  border: 1px solid #dddfe2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.buttonGoogle:hover {
+  background-color: #f5f6f7;
+}
