@@ -1,0 +1,5 @@
+# Environment variables - to keep secrets safe
+.env
+
+# Dependencies - no need to track installed packages
+node_modules
