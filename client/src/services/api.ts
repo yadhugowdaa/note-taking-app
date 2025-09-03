@@ -1,9 +1,7 @@
 import axios from 'axios';
 
 // Updated API_URL for Netlify deployment
-const API_URL = process.env.NODE_ENV === 'production' 
-  ? '/.netlify/functions/api/' 
-  : 'http://localhost:5000/api/';
+const API_URL = 'https://note-it-backend.onrender.com/api/';
 
 // === Auth Service ===
 
