@@ -1,32 +1,24 @@
 [build]
-  publish = "client/build"  # React build is in client folder
-  command = "cd client && npm install && npm run build"
+  publish = "client/build"
+  command = "npm run build"
 
 [build.environment]
   NODE_ENV = "production"
 
 [functions]
-  directory = "netlify/functions"  # Path to your Netlify Functions
+  directory = "netlify/functions"
   node_bundler = "esbuild"
 
-# Install function dependencies
-[functions]
-  node_bundler = "esbuild"
-  install_command = "cd netlify/functions && npm install"
-
-# Redirect API requests to Netlify Function
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/api/:splat"
   status = 200
 
-# SPA support for React routing
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# Security headers
 [[headers]]
   for = "/*"
   [headers.values]
