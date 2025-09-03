@@ -1,6 +1,6 @@
 [build]
   publish = "client/build"  # React build is in client folder
-  command = "cd client && npm run build"
+  command = "cd client && npm install && npm run build"
 
 [build.environment]
   NODE_ENV = "production"
@@ -8,6 +8,11 @@
 [functions]
   directory = "netlify/functions"  # Path to your Netlify Functions
   node_bundler = "esbuild"
+
+# Install function dependencies
+[functions]
+  node_bundler = "esbuild"
+  install_command = "cd netlify/functions && npm install"
 
 # Redirect API requests to Netlify Function
 [[redirects]]
