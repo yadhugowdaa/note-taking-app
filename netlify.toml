@@ -9,6 +9,10 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
+# Add this to install function dependencies automatically
+[[plugins]]
+  package = "@netlify/plugin-functions-install-core"
+
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/api/:splat"
