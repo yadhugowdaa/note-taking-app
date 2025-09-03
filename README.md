@@ -6,7 +6,7 @@ This project was built to fulfill the requirements of a full-stack development a
 Features
 Secure User Authentication:
 
-Multi-step signup flow using Email & OTP verification.
+Multi-step signup flow using Email & OTP verification ( OTP will be in spam ).
 
 Seamless one-click Sign-up & Login with Google.
 
