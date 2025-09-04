@@ -1,11 +1,11 @@
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
 
-import express from 'express';
-import mongoose from 'mongoose';
-import cors from 'cors';
-import authRoutes from './routes/authRoutes';
-import noteRoutes from './routes/noteRoutes';
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import authRoutes from "./routes/authRoutes";
+import noteRoutes from "./routes/noteRoutes";
 
 const app = express();
 
@@ -14,12 +14,16 @@ const connectDB = async () => {
   try {
     const mongoUri = process.env.MONGO_URI;
     if (!mongoUri) {
-      throw new Error('MONGO_URI is not defined in the .env file');
+      throw new Error("MONGO_URI is not defined in the environment variables");
     }
-    await mongoose.connect(mongoUri);
-    console.log('MongoDB Connected...');
+
+    // Prevent multiple connections in serverless environment
+    if (mongoose.connection.readyState === 0) {
+      await mongoose.connect(mongoUri);
+      console.log("✅ MongoDB Connected...");
+    }
   } catch (err: any) {
-    console.error(err.message);
+    console.error("❌ MongoDB connection error:", err.message);
     process.exit(1);
   }
 };
@@ -29,25 +33,21 @@ app.use(cors());
 app.use(express.json());
 
 // --- API Routes ---
-app.use('/api/auth', authRoutes);
-app.use('/api/notes', noteRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/notes", noteRoutes);
 
-app.get('/', (req, res) => {
-  res.send('API is running...');
+app.get("/", (req, res) => {
+  res.send("API is running...");
 });
 
-// Connect to database only when not in serverless environment
-if (process.env.NETLIFY_DEV !== 'true') {
-  connectDB();
-}
-
-// Export for Netlify Function (serverless)
+// --- Export for Netlify Function (serverless) ---
 export default app;
 
-// Only listen locally, not in serverless environment
-if (process.env.NETLIFY_DEV !== 'true') {
+// --- Local Development Only ---
+if (process.env.NETLIFY_DEV !== "true") {
+  connectDB();
   const PORT = process.env.PORT || 5000;
   app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+    console.log(`🚀 Server running locally on http://localhost:${PORT}`);
   });
 }
