@@ -1,4 +1,5 @@
-import server from '../../server/src/index';
+import app from '../../server/src/index';
 import serverless from 'serverless-http';
 
-export const handler = serverless(server);
+// This handler is what Netlify will run for all API requests
+export const handler = serverless(app);
